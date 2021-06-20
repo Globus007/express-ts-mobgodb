@@ -24,7 +24,7 @@ app.get('*', (req: Request, res: Response) => {
   res.sendStatus(404);
 });
 
-app.listen(port, host, () => {
+app.listen(port, () => {
   log.info(`Runing at ${host}:${port}`);
 
   connect();

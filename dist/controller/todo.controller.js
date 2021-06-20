@@ -40,7 +40,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.deleteTodoHandler = exports.updateTodoHandler = exports.createTodoHandler = exports.getTodoByIdHandler = exports.getTodosHandler = void 0;
-var jsonstream_1 = __importDefault(require("jsonstream"));
+var jsonstream_1 = __importDefault(require("JSONStream"));
 var todo_service_1 = require("../service/todo.service");
 function getTodosHandler(req, res) {
     return __awaiter(this, void 0, void 0, function () {

@@ -16,7 +16,7 @@ export async function getTodosHandler(req: Request, res: Response) {
     return getTodosPaginateHandler(req, res);
   }
 
-  const todos = getAllTodos();
+  const todos = await getAllTodos();
   res.status(200).send(todos);
   // getTodosStream().pipe(JSONStream.stringify()).pipe(res.status(200).type('json'));
 }

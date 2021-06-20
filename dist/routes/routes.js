@@ -1,0 +1,13 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.router = void 0;
+var express_1 = require("express");
+var validator_1 = require("../middleware/validator");
+var todo_controller_1 = require("../controller/todo.controller");
+var errorhandler_1 = require("../middleware/errorhandler");
+exports.router = express_1.Router();
+exports.router.get('/', errorhandler_1.handleError(todo_controller_1.getTodosHandler));
+exports.router.get('/:id', errorhandler_1.handleError(todo_controller_1.getTodoByIdHandler));
+exports.router.post('/', validator_1.validate(validator_1.postSchema), errorhandler_1.handleError(todo_controller_1.createTodoHandler));
+exports.router.patch('/:id', validator_1.validate(validator_1.patchSchema), errorhandler_1.handleError(todo_controller_1.updateTodoHandler));
+exports.router.delete('/:id', errorhandler_1.handleError(todo_controller_1.deleteTodoHandler));

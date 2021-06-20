@@ -24,6 +24,7 @@
     "typescript": "^4.3.2"
   },
   "dependencies": {
+    "@types/jsonstream": "^0.8.30",
     "cors": "^2.8.5",
     "dayjs": "^1.10.5",
     "dotenv": "^10.0.0",

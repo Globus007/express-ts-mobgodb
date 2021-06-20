@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const SERVER_PORT = process.env.PORT || 3000;
-const SERVER_HOSTNAME = process.env.SERVER_HOSTNAME || 'localhost';
+const SERVER_HOSTNAME = process.env.SERVER_HOSTNAME || process.env.HEROKU_APP_NAME || 'localhost';
 const DB_CONNECTION = process.env.DB_CONNECTION || '';
 
 const SERVER = {

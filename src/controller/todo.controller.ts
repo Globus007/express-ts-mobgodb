@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-// import JSONStream from 'jsonstream';
+import JSONStream from 'jsonstream';
 import { ITodo } from '../interfaces';
 import {
   getTodo,
@@ -16,9 +16,9 @@ export async function getTodosHandler(req: Request, res: Response) {
     return getTodosPaginateHandler(req, res);
   }
 
-  const todos = await getAllTodos();
-  res.status(200).send(todos);
-  // getTodosStream().pipe(JSONStream.stringify()).pipe(res.status(200).type('json'));
+  // const todos = await getAllTodos();
+  // res.status(200).send(todos);
+  getTodosStream().pipe(JSONStream.stringify()).pipe(res.status(200).type('json'));
 }
 
 export async function getTodoByIdHandler(req: Request, res: Response) {

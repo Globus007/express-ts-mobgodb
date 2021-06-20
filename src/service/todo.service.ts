@@ -6,6 +6,10 @@ export async function getTodo(id: string): Promise<ITodo | null> {
   return await todoModel.findById(id).lean();
 }
 
+export async function getAllTodos(): Promise<ITodo[]> {
+  return await todoModel.find().lean();
+}
+
 export async function getTodosPage(page: number, limit: number): Promise<ITodo[]> {
   const skip = page * limit;
   return await todoModel.find().skip(skip).limit(limit).lean();

@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import JSONStream from 'jsonstream';
+// import JSONStream from 'jsonstream';
 import { ITodo } from '../interfaces';
 import {
   getTodo,
@@ -8,6 +8,7 @@ import {
   saveTodo,
   updateTodo,
   deleteTodo,
+  getAllTodos,
 } from '../service/todo.service';
 
 export async function getTodosHandler(req: Request, res: Response) {
@@ -15,7 +16,9 @@ export async function getTodosHandler(req: Request, res: Response) {
     return getTodosPaginateHandler(req, res);
   }
 
-  getTodosStream().pipe(JSONStream.stringify()).pipe(res.status(200).type('json'));
+  const todos = getAllTodos();
+  res.status(200).send(todos);
+  // getTodosStream().pipe(JSONStream.stringify()).pipe(res.status(200).type('json'));
 }
 
 export async function getTodoByIdHandler(req: Request, res: Response) {

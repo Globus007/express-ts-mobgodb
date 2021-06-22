@@ -1,5 +1,6 @@
 /node_modules
 !/node_modules/jsonstream/
+!/node_modules/@types/jsonstream
 npm-debug.log
 .DS_Store
 /*.env

@@ -35,8 +35,8 @@ export async function getTodoByIdHandler(req: Request, res: Response) {
 export async function createTodoHandler(req: Request, res: Response) {
   const todo: ITodo = req.body;
 
-  saveTodo(todo);
-  res.sendStatus(201);
+  const newTodo = await saveTodo(todo);
+  res.status(201).send(newTodo);
 }
 
 export async function updateTodoHandler(req: Request, res: Response) {

@@ -7,3 +7,14 @@ export interface ITodo extends mongoose.Document {
   createdAt: Date;
   updatedAt: Date;
 }
+
+export interface Pages {
+  todos: ITodo[];
+  pageInfo: PageInfo;
+}
+
+export interface PageInfo {
+  totalPages: number;
+  currentPage: number;
+  limit: number;
+}

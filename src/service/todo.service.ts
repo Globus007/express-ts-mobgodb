@@ -1,6 +1,6 @@
 import { QueryCursor } from 'mongoose';
 import { todoModel } from '../model/todo.model';
-import { ITodo } from '../interfaces';
+import { ITodo, PageInfo, Pages } from '../interfaces';
 
 export async function getTodo(id: string): Promise<ITodo | null> {
   return await todoModel.findById(id).lean();
@@ -10,9 +10,13 @@ export async function getAllTodos(): Promise<ITodo[]> {
   return await todoModel.find().lean();
 }
 
-export async function getTodosPage(page: number, limit: number): Promise<ITodo[]> {
+export async function getTodosPage(page: number, limit: number): Promise<Pages> {
   const skip = page * limit;
-  return await todoModel.find().skip(skip).limit(limit).lean();
+  const totalPages = await todoModel.count().exec();
+
+  const pageInfo: PageInfo = { totalPages: totalPages, currentPage: page, limit: limit };
+  const todos = await todoModel.find().skip(skip).limit(limit);
+  return { todos, pageInfo };
 }
 
 export function getTodosStream(): QueryCursor<ITodo> {

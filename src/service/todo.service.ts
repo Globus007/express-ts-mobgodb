@@ -13,9 +13,14 @@ export async function getAllTodos(): Promise<ITodo[]> {
 export async function getTodosPage(page: number, limit: number): Promise<Pages> {
   const skip = page * limit;
   const totalElements = await todoModel.count().exec();
-  const totalPages = Math.floor(totalElements / limit);
+  const totalPages = Math.trunc(totalElements / limit);
 
-  const pageInfo: PageInfo = { totalPages: totalPages, currentPage: page, limit: limit };
+  const pageInfo: PageInfo = {
+    totalPages: totalPages,
+    currentPage: page,
+    limit: limit,
+    totalElements: totalElements,
+  };
   const todos = await todoModel.find().skip(skip).limit(limit);
   return { todos, pageInfo };
 }

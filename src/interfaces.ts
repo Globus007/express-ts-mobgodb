@@ -17,4 +17,5 @@ export interface PageInfo {
   totalPages: number;
   currentPage: number;
   limit: number;
+  totalElements: number;
 }
